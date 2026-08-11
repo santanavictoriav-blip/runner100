@@ -28,8 +28,8 @@ define( 'DB_USER', 'runner100_user' );
 /** Database password */
 define( 'DB_PASSWORD', 'AJTm8Q4[gQ]l6-QN' );
 
-/** Database hostname */
-define( 'DB_HOST', 'localhost' );
+/** Database hostname - Cambiado a 127.0.0.1 para evitar latencia de DNS/IPv6 en Windows */
+define( 'DB_HOST', '127.0.0.1' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8mb4' );
@@ -89,13 +89,22 @@ define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
+// Aumento de memoria PHP para el tema y plugins
+define( 'WP_MEMORY_LIMIT', '1024M' );
+define( 'WP_MAX_MEMORY_LIMIT', '1024M' );
 
+// Desactivar Cron automático en cada carga de página
+define( 'DISABLE_WP_CRON', true );
+
+// Bloqueo de peticiones cURL/HTTP externas que congelan localhost
+define( 'WP_HTTP_BLOCK_EXTERNAL', true );
+define( 'WP_ACCESSIBLE_HOSTS', 'api.wordpress.org,*.github.com' );
 
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
+    define( 'ABSPATH', __DIR__ . '/' );
 }
 
 /** Sets up WordPress vars and included files. */
